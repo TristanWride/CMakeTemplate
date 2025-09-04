@@ -3,7 +3,6 @@ cmake_minimum_required (VERSION 3.27)
 project (CMakeTemplate)
 
 add_subdirectory (external)
-include (cmake/PackageAddTests.cmake)
 
 option (BUILD_TEST "Build the tests" ON)
 if (BUILD_TEST)
