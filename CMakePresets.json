@@ -1,9 +1,10 @@
 {
-    "version": 3,
+    "version": 8,
+    "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
     "configurePresets": [
         {
-            "name": "linux",
-            "displayName": "linux",
+            "name": "linux-base",
+            "displayName": "linux-base",
             "description": "Base configuration for linux builds",
             "generator": "Ninja",
             "architecture": {
@@ -13,10 +14,58 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "gcc",
-                "CMAKE_CXX_COMPILER": "g++",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
+        },
+        {
+            "name": "linux-gcc",
+            "description": "Build for linux with gcc",
+            "inherits": ["linux-base"],
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
+            }
+        },
+        {
+            "name": "linux-clang",
+            "description": "Build for linux with clang",
+            "inherits": ["linux-base"],
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "linux-gcc-debug",
+            "configuration": "Debug",
+            "configurePreset": "linux-gcc"
+        },
+        {
+            "name": "linux-gcc-release",
+            "configuration": "Release",
+            "configurePreset": "linux-gcc"
+        },
+        {
+            "name": "linux-clang-debug",
+            "configuration": "Debug",
+            "configurePreset": "linux-clang"
+        },
+        {
+            "name": "linux-clang-release",
+            "configuration": "Release",
+            "configurePreset": "linux-clang"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "linux-gcc",
+            "configurePreset": "linux-gcc"
+        },
+        {
+            "name": "linux-clang",
+            "configurePreset": "linux-clang"
         }
     ]
 }
