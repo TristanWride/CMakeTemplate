@@ -20,7 +20,9 @@
         {
             "name": "linux-gcc",
             "description": "Build for linux with gcc",
-            "inherits": ["linux-base"],
+            "inherits": [
+                "linux-base"
+            ],
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "gcc",
                 "CMAKE_CXX_COMPILER": "g++"
@@ -29,10 +31,26 @@
         {
             "name": "linux-clang",
             "description": "Build for linux with clang",
-            "inherits": ["linux-base"],
+            "inherits": [
+                "linux-base"
+            ],
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
                 "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "windows-base",
+            "description": "Using compilers for Visual Studio 17 2022 (x86_x64 architecture)",
+            "generator": "Visual Studio 17 2022",
+            "toolset": "host=x86",
+            "architecture": "x64",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
         }
     ],
@@ -56,6 +74,16 @@
             "name": "linux-clang-release",
             "configuration": "Release",
             "configurePreset": "linux-clang"
+        },
+        {
+            "name": "windows-base-debug",
+            "configurePreset": "windows-base",
+            "configuration": "Debug"
+        },
+        {
+            "name": "windows-base-release",
+            "configurePreset": "windows-base",
+            "configuration": "Release"
         }
     ],
     "testPresets": [
@@ -66,6 +94,10 @@
         {
             "name": "linux-clang",
             "configurePreset": "linux-clang"
+        },
+        {
+            "name": "windows-base",
+            "configurePreset": "windows-base"
         }
     ]
 }

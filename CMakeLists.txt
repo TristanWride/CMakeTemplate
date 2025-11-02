@@ -2,17 +2,18 @@ cmake_minimum_required (VERSION 3.27)
 
 project (CMakeTemplate)
 
-enable_testing()
-include (GoogleTest)
-add_subdirectory (external)
 
 if(MSVC)
   # Force to always compile with W4
-  add_compile_options (/W4 /EHsc "$<$<CONFIG:Debug>:/Od>" "$<$<CONFIG:Debug>:/fsanitize=address>" "$<$<CONFIG:Release>:/O2>")
+  add_compile_options (/W4 /EHsc "$<$<CONFIG:Debug>:/Od>" "$<$<CONFIG:Release>:/O2>")
 else ()
   # Update if necessary
   add_compile_options (-Wall -pedantic)
 endif ()
+
+enable_testing()
+include (GoogleTest)
+add_subdirectory (external)
 
 add_subdirectory (examplelib)
 
