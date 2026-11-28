@@ -1,5 +1,5 @@
 namespace examplelib::core {
 
-[[nodiscard]] const char* getinfo() noexcept;
+[[nodiscard]] const char * getinfo() noexcept;
 
 }

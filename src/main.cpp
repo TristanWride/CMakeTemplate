@@ -3,7 +3,7 @@
 #include <print>
 
 int main() {
-    const char* message = examplelib::core::getinfo();
-    std::println("{}", message);
-    return 0;
+  const char * message = examplelib::core::getinfo();
+  std::println( "{}", message );
+  return 0;
 }
