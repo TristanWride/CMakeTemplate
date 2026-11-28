@@ -5,6 +5,8 @@ macro(package_add_test TESTNAME)
     # the test executable.  Remove g_test_main if writing your own main function.
     target_link_libraries(${TESTNAME} gtest gmock gtest_main examplelib)
     target_compile_features (${TESTNAME} PRIVATE cxx_std_23)
+    # must run before gtest_discover_tests: discovery runs the executable after building
+    copy_asan_runtime(${TESTNAME})
     # gtest_discover_tests replaces gtest_add_tests,
     # see https://cmake.org/cmake/help/v3.10/module/GoogleTest.html for more options to pass to it
     gtest_discover_tests(${TESTNAME}

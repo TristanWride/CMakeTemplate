@@ -1,4 +1,4 @@
 .cache/
 out/
-Testing/
+/Testing/
 compile_commands.json
